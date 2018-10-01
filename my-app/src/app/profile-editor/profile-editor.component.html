@@ -1,0 +1,52 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName">
+  </label>
+  <div class="error" *ngIf="showValidation && profileForm.controls.firstName.invalid">Firstname is required.</div>
+  <br>
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName">
+  </label>
+  <div class="error" *ngIf="showValidation && profileForm.controls.lastName.invalid">Lastname is required.</div>
+  <br>
+
+  <div formGroupName="address">
+    <h3>Address</h3>
+
+    <label>
+      Address 1:
+      <input type="text" formControlName="address1">
+    </label>
+    <div class="error" *ngIf="showValidation && profileForm.controls.address.controls.address1.invalid">Address 1 is required and must be at least 5 characters long.</div>
+    <br>
+
+    <label>
+      City:
+      <input type="text" formControlName="city">
+    </label>
+    <div class="error" *ngIf="showValidation && profileForm.controls.address.controls.city.invalid">City is required.</div>
+    <br>
+
+    <label>
+      State:
+      <input type="text" formControlName="state">
+    </label>
+    <div class="error" *ngIf="showValidation && profileForm.controls.address.controls.state.invalid">State is required.</div>
+    <br>
+
+    <label>
+      Zip Code:
+      <input type="text" formControlName="zip">
+    </label>
+    <div class="error" *ngIf="showValidation && profileForm.controls.address.controls.zip.invalid">Zip is required.</div>
+    <br>
+  </div>
+
+  <button type="submit">Submit</button>
+
+  <p [ngClass]="{'error' : !profileForm.valid}">{{validationMessage}}</p>
+</form>
